@@ -23,6 +23,22 @@ namespace InfoNovitas.LoginSample.Web.Api.Mapping
             };
         }
 
+        public static Author MapToView(this AuthorViewModel viewModel)
+        {
+            if (viewModel == null)
+                return null;
+            return new Author()
+            {
+                Id = viewModel.Id,
+                DateCreated = viewModel.DateCreated,
+                UserCreated = viewModel.UserCreated.MapToView(),
+                FirstName = viewModel.FirstName,
+                LastName = viewModel.LastName,
+                LastModified = viewModel.LastModified,
+                UserLastModified = viewModel.UserLastModified.MapToView()
+            };
+        }
+
         public static List<AuthorViewModel> MapToViewModels(this IEnumerable<Author> views)
         {
             var result = new List<AuthorViewModel>();

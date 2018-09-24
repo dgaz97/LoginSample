@@ -24,7 +24,16 @@ namespace InfoNovitas.LoginSample.Services.Impl
 
             try
             {
-                _repository.Delete(new Author() { Id = request.Id });
+                _repository.Delete(
+                    new Author() {
+                        Id = request.Id,
+                        LastModified = DateTimeOffset.Now,
+                        UserLastModified = new Model.Users.UserInfo()
+                            {
+                                Id = request.UserId
+                            }
+                    }
+                    );
                 response.Success = true;
             }
             catch(Exception ex)
@@ -92,6 +101,7 @@ namespace InfoNovitas.LoginSample.Services.Impl
             {
                 if(request.Author?.Id == 0)
                 {
+                    response.Author = request.Author;
                     response.Author.Id = _repository.Add(request.Author.MapToModel());
                     response.Success = true;
                 }

@@ -122,6 +122,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.js" />
+    <Content Include="app\authors\profile.html" />
     <Content Include="app\common\commonModule.js" />
     <Content Include="app\common\services\authServices.js" />
     <Content Include="app\dashboard\controllers\dashboardCtrl.js" />

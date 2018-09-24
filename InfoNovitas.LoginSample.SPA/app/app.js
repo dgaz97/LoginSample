@@ -67,7 +67,6 @@ loginApp.config([
              url: "/authors",
              controller: "authorsOverviewCtrl",
              templateUrl: "app/authors/authorsOverview.html",
-             cache: false,
              resolve: {
                  loginRequired: loginRequired,
                  authors: function ($ocLazyLoad) {
@@ -81,6 +80,23 @@ loginApp.config([
 
              }
          })
+            .state('authorProfile', {
+                url: "/authors/:id",
+                controller: "authorProfileCtrl",
+                templateUrl: "app/authors/profile.html",
+                resolve: {
+                    loginRequired: loginRequired,
+                    authors: function ($ocLazyLoad) {
+                        return $ocLazyLoad.load({
+                            name: "authors",
+                            files: [
+                                "app/authors/authorsModule.js"
+                            ]
+                        });
+                    }
+
+                }
+            })
          .state('newAuthor', {
              url: "/author/new",
              controller: "newAuthorCtrl",
@@ -101,7 +117,7 @@ loginApp.config([
          })
          .state('updateAuthor', {
              url: "/author/update/:id",
-             controller: "updateProductCtrl",
+             controller: "updateAuthorCtrl",
              templateUrl: "app/authors/updateAuthor.html",
              cache: false,
              resolve: {
@@ -126,10 +142,10 @@ loginApp.config([
 loginApp.controller('LayoutCtrl', [
     '$scope', 'authService', '$window', '$rootScope', 'userInfoService', function ($scope, authService, $window, $rootScope, userInfoService) {
 
-        userInfoService.getInfo().then(function(result) {
+        userInfoService.getInfo().then(function (result) {
             $scope.loggedUser = result.data;
+            $scope.loggedUser.fullName = $scope.loggedUser.firstname + ' ' + $scope.loggedUser.lastname;
         }, function(result) {
-            //error; cannot fetch info for logged user
         });
 
         $scope.logOut = function () {

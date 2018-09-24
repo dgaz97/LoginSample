@@ -19,7 +19,11 @@
                     <td>{{author.lastName}}</td>
                     <td>{{author.dateCreated|date:'dd.MM.yyyy. HH:mm'}}</td>
                     <td>{{author.userCreated.fullName}}</td>
-                    <td></td>
+                    <td>
+                        <button type="button" class="btn btn-primary" ng-click="profile(author.id)">Profil</button>
+                        <button type="button" class="btn btn-default" ng-click="edit(author.id)">Uredi</button>
+                        <button type="button" class="btn btn-default" ng-click="delete(author.id)">Obriši</button>
+                    </td>
                 </tr>
             </tbody>
         </table>
