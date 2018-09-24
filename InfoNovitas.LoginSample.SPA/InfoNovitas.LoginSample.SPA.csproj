@@ -21,6 +21,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -130,10 +131,10 @@
     <Content Include="app\login\controllers\loginCtrl.js" />
     <Content Include="app\login\loginModule.js" />
     <Content Include="app\login\partials\login.html" />
-    <Content Include="app\products\newProduct.html" />
-    <Content Include="app\products\productsModule.js" />
-    <Content Include="app\products\productsOverview.html" />
-    <Content Include="app\products\updateProduct.html" />
+    <Content Include="app\authors\newAuthor.html" />
+    <Content Include="app\authors\authorsModule.js" />
+    <Content Include="app\authors\authorsOverview.html" />
+    <Content Include="app\authors\updateAuthor.html" />
     <Content Include="assets\plugins\font-awesome\.gitignore" />
     <Content Include="assets\plugins\font-awesome\css\font-awesome.css" />
     <Content Include="assets\plugins\font-awesome\css\font-awesome.min.css" />

@@ -10,21 +10,18 @@
 namespace InfoNovitas.LoginSample.Repositories.DatabaseModel
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Product
+    public partial class Author_Get_Result
     {
         public int Id { get; set; }
         public bool Active { get; set; }
-        public System.DateTime DateCreated { get; set; }
-        public int UserCreated { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public decimal Price { get; set; }
-        public Nullable<System.DateTime> LastModified { get; set; }
+        public System.DateTimeOffset DateCreated { get; set; }
+        public Nullable<int> UserCreated { get; set; }
+        public string UserCreatedFullName { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public Nullable<System.DateTimeOffset> LastModified { get; set; }
         public Nullable<int> UserLastModified { get; set; }
-    
-        public virtual UserInfo UserInfo { get; set; }
-        public virtual UserInfo UserInfo1 { get; set; }
+        public string UserLastModifiedFullName { get; set; }
     }
 }

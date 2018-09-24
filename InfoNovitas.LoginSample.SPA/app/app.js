@@ -63,54 +63,54 @@ loginApp.config([
 
                 }
             })
-         .state('productsOverview', {
-             url: "/products",
-             controller: "productsOverviewCtrl",
-             templateUrl: "app/products/productsOverview.html",
+         .state('authorsOverview', {
+             url: "/authors",
+             controller: "authorsOverviewCtrl",
+             templateUrl: "app/authors/authorsOverview.html",
              cache: false,
              resolve: {
                  loginRequired: loginRequired,
-                 products: function ($ocLazyLoad) {
+                 authors: function ($ocLazyLoad) {
                      return $ocLazyLoad.load({
-                         name: "products",
+                         name: "authors",
                          files: [
-                             "app/products/productsModule.js"
+                             "app/authors/authorsModule.js"
                          ]
                      });
                  }
 
              }
          })
-         .state('newProduct', {
-             url: "/product/new",
-             controller: "newProductCtrl",
-             templateUrl: "app/products/newProduct.html",
+         .state('newAuthor', {
+             url: "/author/new",
+             controller: "newAuthorCtrl",
+             templateUrl: "app/authors/newAuthor.html",
              cache: false,
              resolve: {
                  loginRequired: loginRequired,
-                 products: function ($ocLazyLoad) {
+                 authors: function ($ocLazyLoad) {
                      return $ocLazyLoad.load({
-                         name: "products",
+                         name: "authors",
                          files: [
-                             "app/products/productsModule.js"
+                             "app/authors/authorsModule.js"
                          ]
                      });
                  }
 
              }
          })
-         .state('updateProduct', {
-             url: "/product/update",
+         .state('updateAuthor', {
+             url: "/author/update/:id",
              controller: "updateProductCtrl",
-             templateUrl: "app/products/updateProduct.html",
+             templateUrl: "app/authors/updateAuthor.html",
              cache: false,
              resolve: {
                  loginRequired: loginRequired,
-                 products: function ($ocLazyLoad) {
+                 authors: function ($ocLazyLoad) {
                      return $ocLazyLoad.load({
-                         name: "products",
+                         name: "authors",
                          files: [
-                             "app/products/productsModule.js"
+                             "app/authors/authorsModule.js"
                          ]
                      });
                  }

@@ -18,7 +18,8 @@ namespace InfoNovitas.LoginSample.Web.Api.Mapping
                 Id = view.Id,
                 Email = view.Email,
                 Firstname = view.FirstName,
-                Lastname = view.LastName
+                Lastname = view.LastName,
+                FullName = view.FullName
             };
         }
 
@@ -31,7 +32,8 @@ namespace InfoNovitas.LoginSample.Web.Api.Mapping
                 Id = viewModel.Id,
                 Email = viewModel.Email,
                 FirstName = viewModel.Firstname,
-                LastName = viewModel.Lastname
+                LastName = viewModel.Lastname,
+                FullName = viewModel.FullName
             };
         }
     }

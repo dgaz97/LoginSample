@@ -10,13 +10,18 @@
 namespace InfoNovitas.LoginSample.Repositories.DatabaseModel
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class UserInfo
+    public partial class Author_GetAll_Result
     {
         public int Id { get; set; }
+        public bool Active { get; set; }
+        public System.DateTimeOffset DateCreated { get; set; }
+        public Nullable<int> UserCreated { get; set; }
+        public string UserCreatedFullName { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string Email { get; set; }
+        public Nullable<System.DateTimeOffset> LastModified { get; set; }
+        public Nullable<int> UserLastModified { get; set; }
+        public string UserLastModifiedFullName { get; set; }
     }
 }

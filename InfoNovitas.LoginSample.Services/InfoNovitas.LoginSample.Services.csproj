@@ -45,25 +45,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AutoMapperBootstrapper.cs" />
-    <Compile Include="Impl\ProductService.cs" />
+    <Compile Include="CommonProfile.cs" />
+    <Compile Include="IAuthorService.cs" />
+    <Compile Include="Impl\AuthorService.cs" />
     <Compile Include="Impl\UserService.cs" />
-    <Compile Include="IProductService.cs" />
     <Compile Include="IUserService.cs" />
-    <Compile Include="Mapping\ProductsMapper.cs" />
+    <Compile Include="Mapping\AuthorMapper.cs" />
     <Compile Include="Mapping\UserMapper.cs" />
+    <Compile Include="Messaging\Authors\DeleteAuthorRequest.cs" />
+    <Compile Include="Messaging\Authors\DeleteAuthorResponse.cs" />
+    <Compile Include="Messaging\Authors\GetAllAuthorsRequest.cs" />
+    <Compile Include="Messaging\Authors\GetAllAuthorsResponse.cs" />
+    <Compile Include="Messaging\Authors\GetAuthorRequest.cs" />
+    <Compile Include="Messaging\Authors\GetAuthorResponse.cs" />
+    <Compile Include="Messaging\Authors\SaveAuthorRequest.cs" />
+    <Compile Include="Messaging\Authors\SaveAuthorResponse.cs" />
+    <Compile Include="Messaging\Views\Authors\Author.cs" />
     <Compile Include="Messaging\GenericErrorMessageFactory.cs" />
     <Compile Include="Messaging\LoginSampleRequestBase.cs" />
     <Compile Include="Messaging\LoginSampleResponseBase.cs" />
-    <Compile Include="Messaging\Products\CreateProductRequest.cs" />
-    <Compile Include="Messaging\Products\CreateProductResponse.cs" />
-    <Compile Include="Messaging\Products\GetAllProductsRequest.cs" />
-    <Compile Include="Messaging\Products\GetAllProductsResponse.cs" />
-    <Compile Include="Messaging\Products\UpdateProductRequest.cs" />
-    <Compile Include="Messaging\Products\UpdateProductResponse.cs" />
     <Compile Include="Messaging\Users\GetUserInfoRequest.cs" />
     <Compile Include="Messaging\Users\GetUserInfoResponse.cs" />
-    <Compile Include="Messaging\Views\Products\Product.cs" />
     <Compile Include="Messaging\Views\Users\UserInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -11,10 +11,6 @@ namespace InfoNovitas.LoginSample.Web.Api.Models.Users
         public string Firstname { get; set; }
         public string Lastname { get; set; }
         public string Email { get; set; }
-
-        public string FullName
-        {
-            get { return string.Format("{0} {1}", Firstname, Lastname); }
-        }
+        public string FullName { get; set; }
     }
 }

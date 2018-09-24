@@ -48,6 +48,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Authors\AuthorRepository.cs" />
+    <Compile Include="DatabaseModel\Author_GetAll_Result.cs">
+      <DependentUpon>LoginSampleModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DatabaseModel\Author_Get_Result.cs">
+      <DependentUpon>LoginSampleModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DatabaseModel\LoginSampleModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -63,16 +70,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>LoginSampleModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="DatabaseModel\Product.cs">
-      <DependentUpon>LoginSampleModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="DatabaseModel\UserInfo.cs">
       <DependentUpon>LoginSampleModel.tt</DependentUpon>
     </Compile>
     <Compile Include="IRepository.cs" />
-    <Compile Include="Mapping\ProductsMapper.cs" />
+    <Compile Include="Mapping\AuthorsMapper.cs" />
     <Compile Include="Mapping\UserInfoMapper.cs" />
-    <Compile Include="Products\ProductRepository.cs" />
     <Compile Include="Users\UserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -112,6 +115,7 @@
       <Name>InfoNovitas.LoginSample.Model</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

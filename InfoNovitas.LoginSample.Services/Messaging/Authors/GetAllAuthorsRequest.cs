@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InfoNovitas.LoginSample.Model.Products
+namespace InfoNovitas.LoginSample.Services.Messaging.Authors
 {
-    public interface IProductRepository:IRepository<Product,int>
+    public class GetAllAuthorsRequest: LoginSampleRequestBase
     {
     }
 }

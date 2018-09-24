@@ -4,6 +4,7 @@ using System.Web.Http;
 using System.Web.Http.Cors;
 using Autofac;
 using Autofac.Integration.WebApi;
+using AutoMapper;
 using InfoNovitas.LoginSample.Services;
 using InfoNovitas.LoginSample.Web.Api;
 using InfoNovitas.LoginSample.Web.Api.Providers;
@@ -41,11 +42,17 @@ namespace InfoNovitas.LoginSample.Web.Api
                 builder.RegisterModule(new LoginSampleModule());
                 _container = builder.Build();
                 config.DependencyResolver = new AutofacWebApiDependencyResolver(_container);
-                AutoMapperBootstrapper.CreateMap();
+
+                Mapper.Initialize(cfg =>
+                {
+                    cfg.AddProfile<CommonProfile>();
+                });
+
+                Mapper.AssertConfigurationIsValid();
             }
             catch (Exception ex)
             {
-                
+                throw ex;
             }
         }
 
