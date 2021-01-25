@@ -8,46 +8,32 @@ namespace InfoNovitas.LoginSample.Repositories.Authors
 {
     public class AuthorRepository : IAuthorRepository
     {
-        public List<Author> FindAll()
+        public int Add(Author item)
         {
-            using (var context = new IdentityExDbEntities())
-            {
-                return context.Author_GetAll().MapToModels();
-            }
+            throw new System.NotImplementedException();
         }
 
         public bool Delete(Author item)
         {
-            using (var context = new IdentityExDbEntities())
-            {
-                context.Author_Delete(item.Id, item.LastModified, item.UserLastModified?.Id);
-            }
-            return true;
+            throw new System.NotImplementedException();
         }
 
-        public int Add(Author item)
+        public List<Author> FindAll()
         {
-            using (var context = new IdentityExDbEntities())
-            {
-                return context.Author_Insert(item.FirstName, item.LastName, item.DateCreated, item.UserCreated?.Id);
-            }
-        }
-
-        public Author Save(Author item)
-        {
-            using (var context = new IdentityExDbEntities())
-            {
-                context.Author_Save(item.Id, item.FirstName, item.LastName, item.LastModified, item.UserLastModified?.Id);
-                return item;
-            }
+            throw new System.NotImplementedException();
         }
 
         public Author FindBy(int key)
         {
             using (var context = new IdentityExDbEntities())
             {
-                return context.Author_Get(key).FirstOrDefault().MapToModel();
+                return context.Author_Get(key).SingleOrDefault().MapToModel();
             }
+        }
+
+        public Author Save(Author item)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

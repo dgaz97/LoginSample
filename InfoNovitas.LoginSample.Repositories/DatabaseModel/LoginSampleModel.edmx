@@ -14,27 +14,8 @@
           <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
-        <Function Name="Author_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="Author.Delete">
-          <Parameter Name="Id" Type="int" Mode="In" />
-          <Parameter Name="LastModified" Type="datetimeoffset" Mode="In" />
-          <Parameter Name="UserLastModified" Type="int" Mode="In" />
-        </Function>
         <Function Name="Author_Get" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="Author.Get">
           <Parameter Name="Id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="Author_GetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="Author.GetAll" />
-        <Function Name="Author_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="Author.Insert">
-          <Parameter Name="FirstName" Type="varchar" Mode="In" />
-          <Parameter Name="LastName" Type="varchar" Mode="In" />
-          <Parameter Name="DateCreated" Type="datetimeoffset" Mode="In" />
-          <Parameter Name="UserCreated" Type="int" Mode="In" />
-        </Function>
-        <Function Name="Author_Save" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="Author.Save">
-          <Parameter Name="Id" Type="int" Mode="In" />
-          <Parameter Name="FirstName" Type="varchar" Mode="In" />
-          <Parameter Name="LastName" Type="varchar" Mode="In" />
-          <Parameter Name="LastModified" Type="datetimeoffset" Mode="In" />
-          <Parameter Name="UserLastModified" Type="int" Mode="In" />
         </Function>
         <EntityContainer Name="IdentityExDbModelStoreContainer">
           <EntitySet Name="UserInfo" EntityType="Self.UserInfo" Schema="dbo" store:Type="Tables" />
@@ -54,52 +35,28 @@
           </EntityType>
         <EntityContainer Name="IdentityExDbEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="UserInfoes" EntityType="Self.UserInfo" />
-          <FunctionImport Name="Author_Delete">
-            <Parameter Name="Id" Mode="In" Type="Int32" />
-            <Parameter Name="LastModified" Mode="In" Type="DateTimeOffset" />
-            <Parameter Name="UserLastModified" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="Author_Get" ReturnType="Collection(IdentityExDbModel.Author_Get_Result)">
             <Parameter Name="Id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="Author_GetAll" ReturnType="Collection(IdentityExDbModel.Author_GetAll_Result)" />
-          <FunctionImport Name="Author_Insert">
-            <Parameter Name="FirstName" Mode="In" Type="String" />
-            <Parameter Name="LastName" Mode="In" Type="String" />
-            <Parameter Name="DateCreated" Mode="In" Type="DateTimeOffset" />
-            <Parameter Name="UserCreated" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="Author_Save">
-            <Parameter Name="Id" Mode="In" Type="Int32" />
-            <Parameter Name="FirstName" Mode="In" Type="String" />
-            <Parameter Name="LastName" Mode="In" Type="String" />
-            <Parameter Name="LastModified" Mode="In" Type="DateTimeOffset" />
-            <Parameter Name="UserLastModified" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="Author_Get_Result">
           <Property Type="Int32" Name="Id" Nullable="false" />
-          <Property Type="Boolean" Name="Active" Nullable="false" />
           <Property Type="DateTimeOffset" Name="DateCreated" Nullable="false" />
           <Property Type="Int32" Name="UserCreated" Nullable="true" />
-          <Property Type="String" Name="UserCreatedFullName" Nullable="false" MaxLength="101" />
+          <Property Type="String" Name="UserCreatedFirstName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="UserCreatedLastName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="UserCreatedFullName" Nullable="true" MaxLength="101" />
+          <Property Type="String" Name="UserCreatedEmail" Nullable="true" MaxLength="100" />
           <Property Type="String" Name="FirstName" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="LastName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Description" Nullable="true" MaxLength="2000" />
+          <Property Type="String" Name="Note" Nullable="true" MaxLength="500" />
           <Property Type="DateTimeOffset" Name="LastModified" Nullable="true" />
           <Property Type="Int32" Name="UserLastModified" Nullable="true" />
+          <Property Type="String" Name="UserLastModifiedFirstName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="UserLastModifiedLastName" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="UserLastModifiedFullName" Nullable="true" MaxLength="101" />
-        </ComplexType>
-        <ComplexType Name="Author_GetAll_Result">
-          <Property Type="Int32" Name="Id" Nullable="false" />
-          <Property Type="Boolean" Name="Active" Nullable="false" />
-          <Property Type="DateTimeOffset" Name="DateCreated" Nullable="false" />
-          <Property Type="Int32" Name="UserCreated" Nullable="true" />
-          <Property Type="String" Name="UserCreatedFullName" Nullable="false" MaxLength="101" />
-          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="LastName" Nullable="false" MaxLength="50" />
-          <Property Type="DateTimeOffset" Name="LastModified" Nullable="true" />
-          <Property Type="Int32" Name="UserLastModified" Nullable="true" />
-          <Property Type="String" Name="UserLastModifiedFullName" Nullable="true" MaxLength="101" />
+          <Property Type="String" Name="UserLastModifiedEmail" Nullable="true" MaxLength="100" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -117,41 +74,29 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="Author_Delete" FunctionName="IdentityExDbModel.Store.Author_Delete" />
           <FunctionImportMapping FunctionImportName="Author_Get" FunctionName="IdentityExDbModel.Store.Author_Get">
             <ResultMapping>
               <ComplexTypeMapping TypeName="IdentityExDbModel.Author_Get_Result">
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Active" ColumnName="Active" />
                 <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
                 <ScalarProperty Name="UserCreated" ColumnName="UserCreated" />
+                <ScalarProperty Name="UserCreatedFirstName" ColumnName="UserCreatedFirstName" />
+                <ScalarProperty Name="UserCreatedLastName" ColumnName="UserCreatedLastName" />
                 <ScalarProperty Name="UserCreatedFullName" ColumnName="UserCreatedFullName" />
+                <ScalarProperty Name="UserCreatedEmail" ColumnName="UserCreatedEmail" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
                 <ScalarProperty Name="LastModified" ColumnName="LastModified" />
                 <ScalarProperty Name="UserLastModified" ColumnName="UserLastModified" />
+                <ScalarProperty Name="UserLastModifiedFirstName" ColumnName="UserLastModifiedFirstName" />
+                <ScalarProperty Name="UserLastModifiedLastName" ColumnName="UserLastModifiedLastName" />
                 <ScalarProperty Name="UserLastModifiedFullName" ColumnName="UserLastModifiedFullName" />
+                <ScalarProperty Name="UserLastModifiedEmail" ColumnName="UserLastModifiedEmail" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="Author_GetAll" FunctionName="IdentityExDbModel.Store.Author_GetAll">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="IdentityExDbModel.Author_GetAll_Result">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-                <ScalarProperty Name="UserCreated" ColumnName="UserCreated" />
-                <ScalarProperty Name="UserCreatedFullName" ColumnName="UserCreatedFullName" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="LastModified" ColumnName="LastModified" />
-                <ScalarProperty Name="UserLastModified" ColumnName="UserLastModified" />
-                <ScalarProperty Name="UserLastModifiedFullName" ColumnName="UserLastModifiedFullName" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="Author_Insert" FunctionName="IdentityExDbModel.Store.Author_Insert" />
-          <FunctionImportMapping FunctionImportName="Author_Save" FunctionName="IdentityExDbModel.Store.Author_Save" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

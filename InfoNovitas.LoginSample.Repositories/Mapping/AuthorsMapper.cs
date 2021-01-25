@@ -10,7 +10,7 @@ namespace InfoNovitas.LoginSample.Repositories.Mapping
 {
     public static class AuthorsMapper
     {
-        public static Author MapToModel(this Author_GetAll_Result dbResult)
+        /*public static Author MapToModel(this Author_GetAll_Result dbResult)
         {
             if (dbResult == null)
                 return null;
@@ -32,7 +32,7 @@ namespace InfoNovitas.LoginSample.Repositories.Mapping
                     FullName = dbResult.UserLastModifiedFullName
                 },
             };
-        }
+        }*/
 
         public static Author MapToModel(this Author_Get_Result dbResult)
         {
@@ -42,29 +42,29 @@ namespace InfoNovitas.LoginSample.Repositories.Mapping
             {
                 Id = dbResult.Id,
                 DateCreated = dbResult.DateCreated,
-                UserCreated = new Model.Users.UserInfo()
+                UserCreated = dbResult.UserCreated.HasValue ? new Model.Users.UserInfo()
                 {
-                    Id = dbResult.UserCreated.GetValueOrDefault(),
+                    Id = dbResult.UserCreated.Value,
                     FullName = dbResult.UserCreatedFullName
-                },
+                }:null,
                 FirstName = dbResult.FirstName,
                 LastName = dbResult.LastName,
                 LastModified = dbResult.LastModified,
-                UserLastModified = new Model.Users.UserInfo()
+                UserLastModified = dbResult.UserLastModified.HasValue ? new Model.Users.UserInfo()
                 {
-                    Id = dbResult.UserLastModified.GetValueOrDefault(),
+                    Id = dbResult.UserLastModified.Value,
                     FullName = dbResult.UserLastModifiedFullName
-                },
+                }:null,
             };
         }
 
-        public static List<Author> MapToModels(this IEnumerable<Author_GetAll_Result> dbResults)
+        /*public static List<Author> MapToModels(this IEnumerable<Author_GetAll_Result> dbResults)
         {
             var result = new List<Author>();
             if (dbResults == null)
                 return result;
             result.AddRange(dbResults.Select(item => item.MapToModel()));
             return result;
-        }
+        }*/
     }
 }
