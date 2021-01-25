@@ -1,4 +1,4 @@
-﻿var loginApp = angular.module('LoginApp', ['common', 'LocalStorageModule', 'oc.lazyLoad','ui.router']);
+﻿var loginApp = angular.module('LoginApp', ['common', 'LocalStorageModule', 'oc.lazyLoad', 'ui.router']);
 
 loginApp.run([
     'authService', '$http', '$window', '$q', '$rootScope', function (authService, $http, $window, $q, $rootScope) {
@@ -27,8 +27,8 @@ var loginRequired = function ($location, $window, authService) {
 
 
 loginApp.config([
-    '$httpProvider', '$stateProvider', '$urlRouterProvider', '$locationProvider','$ocLazyLoadProvider',
-    function ($httpProvider, $stateProvider, $urlRouterProvider, $locationProvider,$ocLazyLoadProvider) {
+    '$httpProvider', '$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLazyLoadProvider',
+    function ($httpProvider, $stateProvider, $urlRouterProvider, $locationProvider, $ocLazyLoadProvider) {
 
 
         if (!$httpProvider.defaults.headers.get) {
@@ -63,23 +63,23 @@ loginApp.config([
 
                 }
             })
-         .state('authorsOverview', {
-             url: "/authors",
-             controller: "authorsOverviewCtrl",
-             templateUrl: "app/authors/authorsOverview.html",
-             resolve: {
-                 loginRequired: loginRequired,
-                 authors: function ($ocLazyLoad) {
-                     return $ocLazyLoad.load({
-                         name: "authors",
-                         files: [
-                             "app/authors/authorsModule.js"
-                         ]
-                     });
-                 }
+            .state('authorsOverview', {
+                url: "/authors",
+                controller: "authorsOverviewCtrl",
+                templateUrl: "app/authors/authorsOverview.html",
+                resolve: {
+                    loginRequired: loginRequired,
+                    authors: function ($ocLazyLoad) {
+                        return $ocLazyLoad.load({
+                            name: "authors",
+                            files: [
+                                "app/authors/authorsModule.js"
+                            ]
+                        });
+                    }
 
-             }
-         })
+                }
+            })
             .state('authorProfile', {
                 url: "/authors/:id",
                 controller: "authorProfileCtrl",
@@ -97,43 +97,43 @@ loginApp.config([
 
                 }
             })
-         .state('newAuthor', {
-             url: "/author/new",
-             controller: "newAuthorCtrl",
-             templateUrl: "app/authors/newAuthor.html",
-             cache: false,
-             resolve: {
-                 loginRequired: loginRequired,
-                 authors: function ($ocLazyLoad) {
-                     return $ocLazyLoad.load({
-                         name: "authors",
-                         files: [
-                             "app/authors/authorsModule.js"
-                         ]
-                     });
-                 }
+            .state('newAuthor', {
+                url: "/author/new",
+                controller: "newAuthorCtrl",
+                templateUrl: "app/authors/newAuthor.html",
+                cache: false,
+                resolve: {
+                    loginRequired: loginRequired,
+                    authors: function ($ocLazyLoad) {
+                        return $ocLazyLoad.load({
+                            name: "authors",
+                            files: [
+                                "app/authors/authorsModule.js"
+                            ]
+                        });
+                    }
 
-             }
-         })
-         .state('updateAuthor', {
-             url: "/author/update/:id",
-             controller: "updateAuthorCtrl",
-             templateUrl: "app/authors/updateAuthor.html",
-             cache: false,
-             resolve: {
-                 loginRequired: loginRequired,
-                 authors: function ($ocLazyLoad) {
-                     return $ocLazyLoad.load({
-                         name: "authors",
-                         files: [
-                             "app/authors/authorsModule.js"
-                         ]
-                     });
-                 }
+                }
+            })
+            .state('updateAuthor', {
+                url: "/author/update/:id",
+                controller: "updateAuthorCtrl",
+                templateUrl: "app/authors/updateAuthor.html",
+                cache: false,
+                resolve: {
+                    loginRequired: loginRequired,
+                    authors: function ($ocLazyLoad) {
+                        return $ocLazyLoad.load({
+                            name: "authors",
+                            files: [
+                                "app/authors/authorsModule.js"
+                            ]
+                        });
+                    }
 
-             }
-         });
-        
+                }
+            });
+
 
         $locationProvider.html5Mode(true);
     }
@@ -145,7 +145,7 @@ loginApp.controller('LayoutCtrl', [
         userInfoService.getInfo().then(function (result) {
             $scope.loggedUser = result.data;
             $scope.loggedUser.fullName = $scope.loggedUser.firstname + ' ' + $scope.loggedUser.lastname;
-        }, function(result) {
+        }, function (result) {
         });
 
         $scope.logOut = function () {
